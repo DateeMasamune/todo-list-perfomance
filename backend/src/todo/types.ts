@@ -1,6 +1,9 @@
-import { IsBoolean, IsNotEmpty, IsString } from 'class-validator';
+import { IsBoolean, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class Task {
+  @IsNumber()
+  id: number;
+
   @IsBoolean()
   is_checked: boolean;
 

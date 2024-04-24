@@ -21,19 +21,16 @@ export class TodoController {
   }
 
   @Post()
-  async createTask(@Body() postData: TaskType): Promise<TaskModel> {
+  async createTask(@Body() postData: Omit<TaskType, 'id'>): Promise<TaskModel> {
     const { title, description, is_checked } = postData;
     return this.todoService.createTask({ title, description, is_checked });
   }
 
-  @Put('/:id')
-  async updateTask(
-    @Body() putData: TaskType,
-    @Param('id') id: string,
-  ): Promise<TaskModel> {
-    const { title, description, is_checked, ...rest } = putData;
+  @Put()
+  async updateTask(@Body() putData: TaskType): Promise<TaskModel> {
+    const { id, title, description, is_checked, ...rest } = putData;
     return this.todoService.updateTask({
-      where: { id: +id },
+      where: { id },
       data: {
         title,
         description,

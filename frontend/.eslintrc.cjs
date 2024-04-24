@@ -5,6 +5,8 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
+    "@feature-sliced" /**https://github.com/feature-sliced/eslint-config */,
+    "prettier" /**https://github.com/prettier/eslint-config-prettier#installation */
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
@@ -15,4 +17,11 @@ module.exports = {
       { allowConstantExport: true },
     ],
   },
+  settings: {
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true /**https://github.com/feature-sliced/eslint-config */
+      }
+    }
+  }
 }
