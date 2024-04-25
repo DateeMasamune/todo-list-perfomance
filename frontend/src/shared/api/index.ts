@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { dateTransform } from "../lib";
 import { ITodoResponse } from "../types";
 
 const TODO_TAG = "TODO_TAG";
@@ -13,6 +14,12 @@ export const todoApi = createApi({
     getTodoList: builder.query<ITodoResponse[], null>({
       query: () => "todo",
       providesTags: [TODO_TAG],
+      transformResponse: (response: ITodoResponse[]) => {
+        return response.map((todo) => ({
+          ...todo,
+          created_at: dateTransform(new Date(todo.created_at)),
+        }));
+      },
     }),
     createTask: builder.mutation<
       ITodoResponse,

@@ -13,10 +13,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "concurrently": "^8.2.2",
-    "sass": "^1.75.0"
-  },
-  "dependencies": {
-    "clsx": "^2.1.1"
+    "concurrently": "8.2.2"
   }
 }
