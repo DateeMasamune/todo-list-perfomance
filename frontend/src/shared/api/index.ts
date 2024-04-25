@@ -1,29 +1,29 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { ITodoResponse } from "../types";
 
-interface ITodoResponse {
-  id: number;
-  is_checked: boolean;
-  title: string;
-  description: string;
-  created_at: string;
-  updated_at: string;
-}
+const TODO_TAG = "TODO_TAG";
 
 export const todoApi = createApi({
   reducerPath: "todo",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:5000/",
   }),
+  tagTypes: [TODO_TAG],
   endpoints: (builder) => ({
     getTodoList: builder.query<ITodoResponse[], null>({
       query: () => "todo",
+      providesTags: () => [TODO_TAG],
     }),
-    createTask: builder.mutation<ITodoResponse, ITodoResponse>({
+    createTask: builder.mutation<
+      ITodoResponse,
+      Omit<ITodoResponse, "id" | "is_checked" | "created_at" | "updated_at">
+    >({
       query: (task) => ({
         url: "todo",
         method: "POST",
         body: task,
       }),
+      invalidatesTags: [TODO_TAG],
       transformResponse: (response: ITodoResponse) =>
         response /**https://redux-toolkit.js.org/rtk-query/usage/customizing-queries */,
     }),

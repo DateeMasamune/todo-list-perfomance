@@ -22,8 +22,8 @@ export class TodoController {
 
   @Post()
   async createTask(@Body() postData: Omit<TaskType, 'id'>): Promise<TaskModel> {
-    const { title, description, is_checked } = postData;
-    return this.todoService.createTask({ title, description, is_checked });
+    const { title, description } = postData;
+    return this.todoService.createTask({ title, description });
   }
 
   @Put()

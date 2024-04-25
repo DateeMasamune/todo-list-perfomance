@@ -1,0 +1,14 @@
+.wrapper {
+  .cardContainer {
+    display: grid;
+    grid-gap: 10px;
+  }
+
+  .cardDisabled {
+    background: #dadada;
+  }
+
+  .inputContainer {
+    display: grid;
+  }
+}

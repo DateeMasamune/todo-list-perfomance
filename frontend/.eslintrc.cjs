@@ -16,6 +16,7 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    "import/no-internal-modules": ["off"]
   },
   settings: {
     "import/resolver": {
