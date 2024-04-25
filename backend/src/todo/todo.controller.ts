@@ -17,19 +17,20 @@ export class TodoController {
 
   @Get()
   async getTodoList(): Promise<TaskModel[]> {
-    return this.todoService.todoList();
+    return await this.todoService.todoList();
   }
 
   @Post()
   async createTask(@Body() postData: Omit<TaskType, 'id'>): Promise<TaskModel> {
     const { title, description } = postData;
-    return this.todoService.createTask({ title, description });
+    return await this.todoService.createTask({ title, description });
   }
 
   @Put()
   async updateTask(@Body() putData: TaskType): Promise<TaskModel> {
     const { id, title, description, is_checked, ...rest } = putData;
-    return this.todoService.updateTask({
+
+    return await this.todoService.updateTask({
       where: { id },
       data: {
         title,
@@ -43,6 +44,6 @@ export class TodoController {
 
   @Delete('/:id')
   async deleteTask(@Param('id') id: string): Promise<TaskModel> {
-    return this.todoService.deleteTask({ id: +id });
+    return await this.todoService.deleteTask({ id: +id });
   }
 }

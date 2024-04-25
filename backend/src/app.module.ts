@@ -12,7 +12,7 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
   imports: [
     ConfigModule.forRoot() /**https://docs.nestjs.com/techniques/configuration */,
     CacheModule.register({
-      ttl: 1 * 60_000, // 1 min
+      ttl: 5_000, // 5 sec
       max: 50, // maximum number of items in cache
     }) /**https://docs.nestjs.com/techniques/caching */,
   ],

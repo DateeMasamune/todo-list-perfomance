@@ -32,12 +32,13 @@ export const TaskCard: FC<IProp> = ({
   const {
     isEdit,
     checked,
-    setIsEdit,
-    updateTask,
     nameButton,
+    handleDeleteTask,
     handleChangeInput,
+    handleUpdateFields,
     handleChangeCheckbox,
-  } = useUpdateTask(is_checked, id);
+    updateTask: { description: taskDescription, title: taskTitle },
+  } = useUpdateTask(is_checked, id, title, description, created_at);
 
   const renderContent = () => {
     return !isEdit ? (
@@ -55,6 +56,7 @@ export const TaskCard: FC<IProp> = ({
           variant="standard"
           name="title"
           onChange={handleChangeInput}
+          value={taskTitle}
         />
         <TextField
           id="standard-basic"
@@ -62,6 +64,7 @@ export const TaskCard: FC<IProp> = ({
           variant="standard"
           name="description"
           onChange={handleChangeInput}
+          value={taskDescription}
         />
       </Box>
     );
@@ -85,17 +88,10 @@ export const TaskCard: FC<IProp> = ({
           />
         </CardContent>
         <CardActions>
-          <Button
-            variant="contained"
-            size="small"
-            onClick={() => {
-              setIsEdit((prev) => !prev);
-              console.log("=======>updateTask", updateTask);
-            }}
-          >
+          <Button variant="contained" size="small" onClick={handleUpdateFields}>
             {nameButton}
           </Button>
-          <Button variant="contained" size="small" onClick={() => {}}>
+          <Button variant="contained" size="small" onClick={handleDeleteTask}>
             Удалить
           </Button>
         </CardActions>

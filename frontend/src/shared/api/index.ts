@@ -12,7 +12,7 @@ export const todoApi = createApi({
   endpoints: (builder) => ({
     getTodoList: builder.query<ITodoResponse[], null>({
       query: () => "todo",
-      providesTags: () => [TODO_TAG],
+      providesTags: [TODO_TAG],
     }),
     createTask: builder.mutation<
       ITodoResponse,
@@ -27,18 +27,23 @@ export const todoApi = createApi({
       transformResponse: (response: ITodoResponse) =>
         response /**https://redux-toolkit.js.org/rtk-query/usage/customizing-queries */,
     }),
-    updateTask: builder.mutation<ITodoResponse, ITodoResponse>({
+    updateTask: builder.mutation<
+      ITodoResponse,
+      Omit<ITodoResponse, "updated_at">
+    >({
       query: (task) => ({
         url: "todo",
         method: "PUT",
         body: task,
       }),
+      invalidatesTags: [TODO_TAG],
     }),
     deleteTask: builder.mutation<ITodoResponse, number>({
       query: (id) => ({
         url: `todo/${id}`,
         method: "DELETE",
       }),
+      invalidatesTags: [TODO_TAG],
     }),
   }),
 });
