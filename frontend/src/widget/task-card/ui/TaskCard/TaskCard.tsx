@@ -20,14 +20,16 @@ interface IProp {
   title: string;
   description: string;
   created_at: string;
+  actualDate: string;
 }
 
 export const TaskCard: FC<IProp> = ({
   id,
-  is_checked = false,
   title,
-  description,
   created_at,
+  actualDate,
+  description,
+  is_checked = false,
 }) => {
   const {
     isEdit,
@@ -78,7 +80,7 @@ export const TaskCard: FC<IProp> = ({
         })}
       >
         <CardContent className={styles.cardContainer}>
-          <Typography variant="body2">Создано: {created_at}</Typography>
+          <Typography variant="body2">Создано: {actualDate}</Typography>
           {renderContent()}
           <FormControlLabel
             control={

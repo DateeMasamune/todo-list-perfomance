@@ -17,7 +17,7 @@ export const todoApi = createApi({
       transformResponse: (response: ITodoResponse[]) => {
         return response.map((todo) => ({
           ...todo,
-          created_at: dateTransform(new Date(todo.created_at)),
+          actualDate: dateTransform(new Date(todo.created_at)),
         }));
       },
     }),

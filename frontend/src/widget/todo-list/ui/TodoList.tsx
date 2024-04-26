@@ -16,16 +16,19 @@ export const TodoList = () => {
 
   return (
     <Box className={styles.container}>
-      {data.map(({ id, is_checked, title, description, created_at }) => (
-        <TaskCard
-          id={id}
-          key={id}
-          title={title}
-          created_at={created_at}
-          is_checked={is_checked}
-          description={description}
-        />
-      ))}
+      {data.map(
+        ({ id, is_checked, title, description, actualDate, created_at }) => (
+          <TaskCard
+            id={id}
+            key={id}
+            title={title}
+            created_at={created_at}
+            actualDate={actualDate}
+            is_checked={is_checked}
+            description={description}
+          />
+        ),
+      )}
     </Box>
   );
 };
