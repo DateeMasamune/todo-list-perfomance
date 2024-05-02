@@ -16,6 +16,12 @@
 
 - npm start
 
+Версия node js - v20.12.2
+
+frontend localhost - http://localhost:5173/
+backend localhost - http://localhost:5000/
+db prisma ui - http://localhost:5555
+
 
 **************************************************************************************************
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
