@@ -6,6 +6,7 @@ generator client {
 }
 
 //https://docs.nestjs.com/techniques/configuration
+//https://docs.nestjs.com/recipes/prisma
 datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
